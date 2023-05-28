@@ -48,10 +48,16 @@
         event.preventDefault()
         let selectedVariant;
 
-        console.log('form options',this.form.options)
+        this.variants.forEach((variant,i) => {
+          if(variant.option1 === this.form.selections[0] && variant.options2 === this.form.selections[1] && variant.option3 === this.form.selections[2]) {
+            selectedVariant = variant
+          }
+        })
+
+        console.log(selectedVariant)
 
         let data = {
-          id: this.variant,
+          id: selectedVariant.id,
           quantity: 1,
         }
         try {
