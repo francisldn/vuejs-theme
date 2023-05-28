@@ -7,6 +7,7 @@
   <button @click="addToCart" type="submit" name="add" class="add-to-cart-button">Add to cart</button>
 </form>
 
+{% comment %}  change the delimiters to avoid conflict with liquid {% endcomment %}
 <script>
   if (document.querySelector('#add-to-cart-form')) {
   const productForm = Vue.createApp({
@@ -22,7 +23,21 @@
         }
       }
     },
-  
+    methods: {
+      addToCart(event) {
+        event.preventDefault()
+        fetch('/cart/add.js',{
+          method: 'POST',
+          mode: 'cors',
+          headers: {
+            "Content-Type": 'application.json',
+          },
+          body: JSON.stringify(data)
+        })
+        .then(res => console.log(res))
+        .catch(err => console.log(error))
+      }
+    }
   }).mount('#add-to-cart-form')
 }
 </script>
