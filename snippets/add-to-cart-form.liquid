@@ -24,7 +24,7 @@
       }
     },
     created() {
-      fetch('/products/{{ product.handle }}.js').then(results => console.log(results))
+      fetch('/products/{{ product.handle }}.json').then(results => console.log(results))
     },
     methods: {
       addToCart(event) {
