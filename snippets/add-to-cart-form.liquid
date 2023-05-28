@@ -26,7 +26,6 @@
     async created() {
       try {
         const data = await fetch('/products/{{ product.handle }}.js').then((res) => res.json())
-        console.log('data', data)
         this.form.options = data.options.map(item => ({...item, visible: false}))
         this.variants = data.variants
         this.form.options.forEach(item => { 
@@ -46,8 +45,6 @@
       async addToCart(event) {
         event.preventDefault()
         let selectedVariant;
-        console.log('variants',this.variants)
-        console.log('selections',this.form.selections)
         
         this.variants.forEach((variant,i) => {
           if((variant.option1 === this.form.selections[0]) && (variant.option2 === this.form.selections[1]) && (variant.option3 === this.form.selections[2])) {
