@@ -29,7 +29,10 @@
         console.log('data', data)
         this.form.options = data.options.map(item => ({...item, visible: false}))
         this.variants = data.variants
-        this.form.options.forEach(item => this.selected.push(item.value[0]))
+        this.form.options.forEach(item => {
+          console.log('item', item)
+          this.selected.push(item.value[0])
+      })
         this.selected.forEach(item => {
               if(item) {
                 this.form.selections.push(item)
