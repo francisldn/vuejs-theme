@@ -47,7 +47,9 @@
       async addToCart(event) {
         event.preventDefault()
         let selectedVariant;
-
+        console.log('variants',this.variants)
+        console.log('selections',this.form.selections)
+        
         this.variants.forEach((variant,i) => {
           if(variant.option1 === this.form.selections[0] && variant.options2 === this.form.selections[1] && variant.option3 === this.form.selections[2]) {
             selectedVariant = variant
