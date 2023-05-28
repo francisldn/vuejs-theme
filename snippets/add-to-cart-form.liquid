@@ -23,6 +23,9 @@
         }
       }
     },
+    created() {
+      fetch('/products/{{ product.handle }}.js').then(results => console.log(results))
+    },
     methods: {
       addToCart(event) {
         event.preventDefault()
