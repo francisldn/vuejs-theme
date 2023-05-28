@@ -25,7 +25,7 @@
     },
     async created() {
       try {
-        const data = await fetch('/products/{{ product.handle }}.js').then(res => res.json())
+        const data = await fetch('/products/{{ product.handle }}.js').then((res) => res.json())
         console.log('data', data)
         this.form.options = data.options.map(item => ({...item, visible: false}))
         this.variants = data.variants
@@ -60,8 +60,8 @@
         } catch (error) {
           console.log(error)
         }
-        
+      }
     }
-  }).mount('#add-to-cart-form')
-}
+    }).mount('#add-to-cart-form')
+  }
 </script>
