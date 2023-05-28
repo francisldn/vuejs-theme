@@ -51,6 +51,7 @@
         
         this.variants.forEach((variant,i) => {
           if(variant.option1 === this.form.selections[0] && variant.options2 === this.form.selections[1] && variant.option3 === this.form.selections[2]) {
+            console.log('variant', variant)
             selectedVariant = variant
           }
         })
