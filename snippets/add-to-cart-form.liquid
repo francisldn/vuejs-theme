@@ -17,6 +17,7 @@
         open: false,
         variants: '',
         selected: [],
+        selectedVariant:
         form: {
           selections: [],
           options: ""
@@ -31,7 +32,7 @@
         this.variants = data.variants
         this.form.options.forEach(item => { 
           this.selected.push(item.values[0])
-      })
+        })
         this.selected.forEach(item => {
               if(item) {
                 this.form.selections.push(item)
@@ -46,6 +47,10 @@
     methods: {
       async addToCart(event) {
         event.preventDefault()
+        let selectedVariant;
+
+        console.log('form options',this.form.options)
+
         let data = {
           id: this.variant,
           quantity: 1,
