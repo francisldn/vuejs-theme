@@ -32,12 +32,11 @@
         this.form.options.forEach(item => { 
           this.selected.push(item.values[0])
         })
-        this.selected.forEach(item => {
-              if(item) {
-                this.form.selections.push(item)
-              }
-              this.form.selections.push(null)
-          })
+        this.form.selections = [
+          this.selected[0] || null,
+          this.selected[1] || null,
+          this.selected[2] || null
+        ]
       } catch (error) {
         console.log(error)
       }
