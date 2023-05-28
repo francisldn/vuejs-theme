@@ -41,7 +41,7 @@
           this.cartData = data
           console.log('cart data', data)
         })
-      }
+      },
       
       addToCart(event) {
         event.preventDefault()
@@ -62,8 +62,6 @@
           this.getCartItems();
           })
         .catch(err => console.log(error))
-
-      
       }
     }
   }).mount('#add-to-cart-form')
