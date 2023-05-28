@@ -24,10 +24,11 @@
       }
     },
     created() {
-      fetch( window.Shopify.routes.root + '/products/{{ product.handle }}.js')
+      fetch('/products/{{ product.handle }}.js')
         .then((results) => results.json())
         .then(data => {
           this.variant = data.variants[0].id
+          console.log(this.variant)
         })
     },
     methods: {
@@ -38,7 +39,7 @@
           quantity: 1,
         }
         
-        fetch(window.Shopify.routes.root + '/cart/add.js',{
+        fetch('/cart/add.js',{
           method: 'POST',
           headers: {
             "Content-Type": 'application/json',
