@@ -24,7 +24,7 @@
       }
     },
     created() {
-      fetch('/products/{{ product.handle }}.js')
+      fetch( window.Shopify.routes.root + '/products/{{ product.handle }}.js')
         .then((results) => results.json())
         .then(data => {
           this.variant = data.variants[0].id
@@ -37,9 +37,8 @@
           id: this.variant,
           quantity: 1,
         }
-        fetch('/cart/add.js',{
+        await fetch(window.Shopify.routes.root + '/cart/add.js',{
           method: 'POST',
-          mode: 'cors',
           headers: {
             "Content-Type": 'application/json',
           },
