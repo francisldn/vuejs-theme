@@ -28,7 +28,7 @@
       fetch('/products/{{ product.handle }}.js')
         .then((results) => results.json())
         .then(data => {
-          this.variants = data.variants[0]
+          this.variants = data.variants[0].id
         })
     },
     methods: {
