@@ -2,11 +2,12 @@
   <template v-for="(option, i) in form.options" :key="i">
     <div>
       {% render 'product-option-row' %}
+      ${test}
     </div>
+    
   </template>
-
   <button @click="addToCart" type="submit" name="add" class="add-to-cart-button">Add to cart</button>
-  ${test}
+  
 </form>
 
 <script>
