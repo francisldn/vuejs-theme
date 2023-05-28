@@ -5,7 +5,6 @@
     </div>
   </template>
   <button @click="addToCart" type="submit" name="add" class="add-to-cart-button">Add to cart</button>
-  ${variants}
 </form>
 
 {% comment %}  change the delimiters to avoid conflict with liquid {% endcomment %}
@@ -16,7 +15,7 @@
     data() {
       return {
         open: false,
-        variants: "",
+        variant: "",
         selected: [],
         form: {
           selections: "",
@@ -28,12 +27,16 @@
       fetch('/products/{{ product.handle }}.js')
         .then((results) => results.json())
         .then(data => {
-          this.variants = data.variants[0].id
+          this.variant = data.variants[0].id
         })
     },
     methods: {
       addToCart(event) {
         event.preventDefault()
+        let data = {
+          id: this.variant,
+          quantity: 1,
+        }
         fetch('/cart/add.js',{
           method: 'POST',
           mode: 'cors',
