@@ -51,7 +51,9 @@
         
         this.variants.forEach((variant,i) => {
           console.log('variant',variant)
-          console.log('selections',this.form.selections)
+          console.log('selections0',this.form.selections[0])
+          console.log('selections1',this.form.selections[1])
+          console.log('selections2',this.form.selections[2])
           if(variant.option1 === this.form.selections[0] && variant.options2 === this.form.selections[1] && variant.option3 === null) {
             selectedVariant = variant
           }
