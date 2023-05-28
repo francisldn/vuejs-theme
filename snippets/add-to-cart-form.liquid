@@ -28,7 +28,6 @@
         .then((results) => results.json())
         .then(data => {
           this.variant = data.variants[0].id
-          console.log(this.variant)
         })
     },
     methods: {
