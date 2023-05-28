@@ -15,11 +15,10 @@
     data() {
       return {
         open: false,
-        variant: "",
-        cartData: '',
+        variants: '',
         selected: [],
         form: {
-          selections: "",
+          selections: [],
           options: ""
         }
       }
@@ -28,20 +27,18 @@
       fetch('/products/{{ product.handle }}.js')
         .then((results) => results.json())
         .then(data => {
-          this.variant = data.variants[0].id
+          this.form.options = data.options.map(item => ({...items, visible: false}))
+          this.variants = data.variants
+          data.options.map(item => this.selected.push(item.value[0]))
+          this.selected.forEach(item => {
+            if(item) {
+              this.form.selections.push(item)
+            }
+            this.form.selections.push(null)
+          })
         })
-      
-      
     },
     methods: {
-      getCartItems() {
-        fetch('/cart.js')
-        .then(res => res.json())
-        .then(data => {
-          this.cartData = data
-          console.log('cart data', data)
-        })
-      },
       
       addToCart(event) {
         event.preventDefault()
@@ -59,8 +56,7 @@
         })
         .then(res => {
           console.log(res)
-          this.getCartItems();
-          })
+        })
         .catch(err => console.log(error))
       }
     }
