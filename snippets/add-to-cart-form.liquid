@@ -23,42 +23,44 @@
         }
       }
     },
-    created() {
-      fetch('/products/{{ product.handle }}.js')
-        .then((results) => results.json())
-        .then(data => {
-          this.form.options = data.options.map(item => ({...items, visible: false}))
-          this.variants = data.variants
-          data.options.map(item => this.selected.push(item.value[0]))
-          this.selected.forEach(item => {
-            if(item) {
-              this.form.selections.push(item)
-            }
-            this.form.selections.push(null)
+    async created() {
+      try {
+        const data = await fetch('/products/{{ product.handle }}.js').then(res => res.json())
+        console.log('data', data)
+        this.form.options = data.options.map(item => ({...item, visible: false}))
+        this.variants = data.variants
+        data.options.map(item => this.selected.push(item.value[0]))
+        this.selected.forEach(item => {
+              if(item) {
+                this.form.selections.push(item)
+              }
+              this.form.selections.push(null)
           })
-        })
+      } catch (error) {
+        console.log(error)
+      }
+     
     },
     methods: {
-      
-      addToCart(event) {
+      async addToCart(event) {
         event.preventDefault()
         let data = {
           id: this.variant,
           quantity: 1,
         }
-        
-        fetch('/cart/add.js',{
-          method: 'POST',
-          headers: {
-            "Content-Type": 'application/json',
-          },
-          body: JSON.stringify(data)
-        })
-        .then(res => {
+        try {
+          const res = await fetch('/cart/add.js',{
+            method: 'POST',
+            headers: {
+              "Content-Type": 'application/json',
+            },
+            body: JSON.stringify(data)
+          }).then (data => data.json())
           console.log(res)
-        })
-        .catch(err => console.log(error))
-      }
+        } catch (error) {
+          console.log(error)
+        }
+        
     }
   }).mount('#add-to-cart-form')
 }
