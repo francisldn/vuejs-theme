@@ -5,18 +5,48 @@
 {% comment %} JSON as the schema {% endcomment %}
 {% schema %}
 {
+<<<<<<< HEAD
   "name": "Hero Image", 
+=======
+  "name": "Slideshow",
+  "tag": "section",
+  "class": "slideshow",
+  "max_blocks": 5,
+>>>>>>> 4fab939 (add schema)
   "settings": [
     {
-      "type": "image_picker",
-      "id": "image",
-      "label": "Image"
+      "type": "text",
+      "id": "title",
+      "label": "Slideshow"
     }
   ],
+  "blocks": [
+     {
+       "name": "Slide",
+       "type": "slide",
+       "settings": [
+         {
+           "type": "image_picker",
+           "id": "image",
+           "label": "Image"
+         }
+       ]
+     }
+   ],
   "presets": [
     {
-      "name": "Hero Image",
-      "category": "Image"
+      "name": "Slideshow",
+      "settings": {
+        "title": "Slideshow"
+      },
+      "blocks": [
+        {
+          "type": "slide"
+        },
+        {
+          "type": "slide"
+        }
+      ]
     }
   ]
 }
