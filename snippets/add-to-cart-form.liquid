@@ -3,7 +3,7 @@
     <div>
       {% render 'product-option-row' %}
     </div>
-
+  </template>
   <button @click="addToCart" type="submit" name="add" class="add-to-cart-button">Add to cart</button>
 </form>
 
@@ -37,8 +37,9 @@
           id: this.variant,
           quantity: 1,
         }
-        fetch('/',{
+        fetch('/cart/add.js',{
           method: 'POST',
+          mode: 'cors',
           headers: {
             "Content-Type": 'application/json',
           },
