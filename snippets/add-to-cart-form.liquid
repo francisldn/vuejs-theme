@@ -5,6 +5,7 @@
     </div>
   </template>
   <button @click="addToCart" type="submit" name="add" class="add-to-cart-button">Add to cart</button>
+  ${variants}
 </form>
 
 {% comment %}  change the delimiters to avoid conflict with liquid {% endcomment %}
@@ -24,7 +25,11 @@
       }
     },
     created() {
-      fetch('/products/{{ product.handle }}.js').then(async(results) => console.log(await results.json()))
+      fetch('/products/{{ product.handle }}.js')
+        .then((results) => results.json())
+        .then(data => {
+          this.variants = data.variants[0]
+        })
     },
     methods: {
       addToCart(event) {
