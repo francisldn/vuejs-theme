@@ -10,15 +10,16 @@
 </form>
 
 <script>
-  if (document.querySelector('add-to-cart-form')) {
-    const productForm = Vue.createApp({
-      delimiters: ['${','}'],
-      data() {
-        return {
-          test: 'test'
+  if (document.querySelector('#add-to-cart-form')) {
+  const productForm = Vue.createApp({
+    delimiters: ['${', '}'],
+    data() {
+      return {
+        test: 'test'
         }
       }
-    }).mount('#add-to-cart-form')
-  }
- 
+    },
+   
+  }).mount('#add-to-cart-form')
+}
 </script>
