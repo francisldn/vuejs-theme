@@ -2,9 +2,10 @@
   <img src="{{ section.settings.image | img_url: 'master' }}">
 </div>
 
+{% comment %} JSON as the schema {% endcomment %}
 {% schema %}
 {
-  "name": "Hero Image",
+  "name": "Hero Image", 
   "settings": [
     {
       "type": "image_picker",
