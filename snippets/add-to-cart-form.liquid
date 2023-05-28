@@ -16,6 +16,7 @@
       return {
         open: false,
         variant: "",
+        cartData: '',
         selected: [],
         form: {
           selections: "",
@@ -29,8 +30,19 @@
         .then(data => {
           this.variant = data.variants[0].id
         })
+      
+      
     },
     methods: {
+      getCartItems() {
+        fetch('/cart.js')
+        .then(res => res.json())
+        .then(data => {
+          this.cartData = data
+          console.log('cart data', data)
+        })
+      }
+      
       addToCart(event) {
         event.preventDefault()
         let data = {
@@ -45,8 +57,13 @@
           },
           body: JSON.stringify(data)
         })
-        .then(res => console.log(res))
+        .then(res => {
+          console.log(res)
+          this.getCartItems();
+          })
         .catch(err => console.log(error))
+
+      
       }
     }
   }).mount('#add-to-cart-form')
